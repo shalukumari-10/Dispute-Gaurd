@@ -9,38 +9,197 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as AppRouteImport } from './routes/_app'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppTransactionsRouteImport } from './routes/_app.transactions'
+import { Route as AppSettingsRouteImport } from './routes/_app.settings'
+import { Route as AppNotificationsRouteImport } from './routes/_app.notifications'
+import { Route as AppMoneyFlowRouteImport } from './routes/_app.money-flow'
+import { Route as AppFreezeRouteImport } from './routes/_app.freeze'
+import { Route as AppFraudRouteImport } from './routes/_app.fraud'
+import { Route as AppDisputeRouteImport } from './routes/_app.dispute'
+import { Route as AppDashboardRouteImport } from './routes/_app.dashboard'
+import { Route as AppComplaintsRouteImport } from './routes/_app.complaints'
+import { Route as AppAnalyticsRouteImport } from './routes/_app.analytics'
 
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppRoute = AppRouteImport.update({
+  id: '/_app',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppTransactionsRoute = AppTransactionsRouteImport.update({
+  id: '/transactions',
+  path: '/transactions',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppNotificationsRoute = AppNotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppMoneyFlowRoute = AppMoneyFlowRouteImport.update({
+  id: '/money-flow',
+  path: '/money-flow',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppFreezeRoute = AppFreezeRouteImport.update({
+  id: '/freeze',
+  path: '/freeze',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppFraudRoute = AppFraudRouteImport.update({
+  id: '/fraud',
+  path: '/fraud',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDisputeRoute = AppDisputeRouteImport.update({
+  id: '/dispute',
+  path: '/dispute',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDashboardRoute = AppDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppComplaintsRoute = AppComplaintsRouteImport.update({
+  id: '/complaints',
+  path: '/complaints',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAnalyticsRoute = AppAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/analytics': typeof AppAnalyticsRoute
+  '/complaints': typeof AppComplaintsRoute
+  '/dashboard': typeof AppDashboardRoute
+  '/dispute': typeof AppDisputeRoute
+  '/fraud': typeof AppFraudRoute
+  '/freeze': typeof AppFreezeRoute
+  '/money-flow': typeof AppMoneyFlowRoute
+  '/notifications': typeof AppNotificationsRoute
+  '/settings': typeof AppSettingsRoute
+  '/transactions': typeof AppTransactionsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/analytics': typeof AppAnalyticsRoute
+  '/complaints': typeof AppComplaintsRoute
+  '/dashboard': typeof AppDashboardRoute
+  '/dispute': typeof AppDisputeRoute
+  '/fraud': typeof AppFraudRoute
+  '/freeze': typeof AppFreezeRoute
+  '/money-flow': typeof AppMoneyFlowRoute
+  '/notifications': typeof AppNotificationsRoute
+  '/settings': typeof AppSettingsRoute
+  '/transactions': typeof AppTransactionsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_app': typeof AppRouteWithChildren
+  '/login': typeof LoginRoute
+  '/_app/analytics': typeof AppAnalyticsRoute
+  '/_app/complaints': typeof AppComplaintsRoute
+  '/_app/dashboard': typeof AppDashboardRoute
+  '/_app/dispute': typeof AppDisputeRoute
+  '/_app/fraud': typeof AppFraudRoute
+  '/_app/freeze': typeof AppFreezeRoute
+  '/_app/money-flow': typeof AppMoneyFlowRoute
+  '/_app/notifications': typeof AppNotificationsRoute
+  '/_app/settings': typeof AppSettingsRoute
+  '/_app/transactions': typeof AppTransactionsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/analytics'
+    | '/complaints'
+    | '/dashboard'
+    | '/dispute'
+    | '/fraud'
+    | '/freeze'
+    | '/money-flow'
+    | '/notifications'
+    | '/settings'
+    | '/transactions'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/login'
+    | '/analytics'
+    | '/complaints'
+    | '/dashboard'
+    | '/dispute'
+    | '/fraud'
+    | '/freeze'
+    | '/money-flow'
+    | '/notifications'
+    | '/settings'
+    | '/transactions'
+  id:
+    | '__root__'
+    | '/'
+    | '/_app'
+    | '/login'
+    | '/_app/analytics'
+    | '/_app/complaints'
+    | '/_app/dashboard'
+    | '/_app/dispute'
+    | '/_app/fraud'
+    | '/_app/freeze'
+    | '/_app/money-flow'
+    | '/_app/notifications'
+    | '/_app/settings'
+    | '/_app/transactions'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRouteWithChildren
+  LoginRoute: typeof LoginRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_app': {
+      id: '/_app'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +207,112 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_app/transactions': {
+      id: '/_app/transactions'
+      path: '/transactions'
+      fullPath: '/transactions'
+      preLoaderRoute: typeof AppTransactionsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/settings': {
+      id: '/_app/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/notifications': {
+      id: '/_app/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof AppNotificationsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/money-flow': {
+      id: '/_app/money-flow'
+      path: '/money-flow'
+      fullPath: '/money-flow'
+      preLoaderRoute: typeof AppMoneyFlowRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/freeze': {
+      id: '/_app/freeze'
+      path: '/freeze'
+      fullPath: '/freeze'
+      preLoaderRoute: typeof AppFreezeRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/fraud': {
+      id: '/_app/fraud'
+      path: '/fraud'
+      fullPath: '/fraud'
+      preLoaderRoute: typeof AppFraudRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/dispute': {
+      id: '/_app/dispute'
+      path: '/dispute'
+      fullPath: '/dispute'
+      preLoaderRoute: typeof AppDisputeRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/dashboard': {
+      id: '/_app/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AppDashboardRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/complaints': {
+      id: '/_app/complaints'
+      path: '/complaints'
+      fullPath: '/complaints'
+      preLoaderRoute: typeof AppComplaintsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/analytics': {
+      id: '/_app/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AppAnalyticsRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
+interface AppRouteChildren {
+  AppAnalyticsRoute: typeof AppAnalyticsRoute
+  AppComplaintsRoute: typeof AppComplaintsRoute
+  AppDashboardRoute: typeof AppDashboardRoute
+  AppDisputeRoute: typeof AppDisputeRoute
+  AppFraudRoute: typeof AppFraudRoute
+  AppFreezeRoute: typeof AppFreezeRoute
+  AppMoneyFlowRoute: typeof AppMoneyFlowRoute
+  AppNotificationsRoute: typeof AppNotificationsRoute
+  AppSettingsRoute: typeof AppSettingsRoute
+  AppTransactionsRoute: typeof AppTransactionsRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppAnalyticsRoute: AppAnalyticsRoute,
+  AppComplaintsRoute: AppComplaintsRoute,
+  AppDashboardRoute: AppDashboardRoute,
+  AppDisputeRoute: AppDisputeRoute,
+  AppFraudRoute: AppFraudRoute,
+  AppFreezeRoute: AppFreezeRoute,
+  AppMoneyFlowRoute: AppMoneyFlowRoute,
+  AppNotificationsRoute: AppNotificationsRoute,
+  AppSettingsRoute: AppSettingsRoute,
+  AppTransactionsRoute: AppTransactionsRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppRoute: AppRouteWithChildren,
+  LoginRoute: LoginRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
