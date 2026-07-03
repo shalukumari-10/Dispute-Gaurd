@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#1D4ED8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Shield -->
+  <path
+    d="M32 4
+       L52 12
+       V28
+       C52 43 42 54 32 60
+       C22 54 12 43 12 28
+       V12
+       Z"
+    fill="url(#grad)"
+    stroke="white"
+    stroke-width="2"/>
+
+  <!-- DG Text -->
+  <text
+    x="32"
+    y="38"
+    text-anchor="middle"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="18"
+    font-weight="bold"
+    fill="white">
+    DG
+  </text>
+</svg>
